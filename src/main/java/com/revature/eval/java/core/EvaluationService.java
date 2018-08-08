@@ -2,6 +2,7 @@ package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ public class EvaluationService {
 		for (int i = reversed.length - 1, j=0; i >= 0; i--, j++) {
 			reversed[j] = string.charAt(i);
 		}
+		
 		return new String(reversed);
 		
 	}
@@ -315,9 +317,39 @@ public class EvaluationService {
 	 */
 	static class BinarySearch<T> {
 		private List<T> sortedList;
+		private T[] a;
+		
+		private Comparator<T> c;
+		
+		public BinarySearch(T[] words, Comparator<T> comparator) {
+			a = words;
+			c = comparator;
+		}
+		
+		
+		
+		
+		
+		
 
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
+			
+			int low=0;
+			int high = a.length -1;
+			
+			while(low<=high) {
+				int mid = (low + high )/2;
+				
+ 				T midVal = a[mid];
+				if(c.compare(t, midVal)<0) {
+					low=mid-1;
+				}
+				else if(c.compare(t,midVal)>0) {
+					high = mid+1;
+					
+				}
+			}
+			
 			return 0;
 		}
 
@@ -354,8 +386,24 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+        	String vowels = "aeiou";
+        	String beforVowel = "";
+        	int cut = 0;
+            while (cut < string.length() && !vowels.contains("" + string.charAt(cut)))
+            {
+                beforVowel += string.charAt(cut);
+                cut++;
+            }
+            if (cut == 0)
+            {
+                cut = 1;
+            }
+            
+            System.out.println((string.substring(cut) + beforVowel + "ay"));
+            String output = (string.substring(cut) + beforVowel + "ay");
+		
+            return output;
 	}
 
 	/**
@@ -374,8 +422,29 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		int remainder=0;
+		int result=0;
+		int number =0;
+		
+		number = input;
+		
+		while(number!=0) {
+			remainder = number%10;
+			result+= (remainder*remainder*remainder);
+			number /=10;
+		}
+		
+		if(result==input) {
+			System.out.println("armstrong number");
+			return true;
+		}
+		else
+		{
+			System.out.println("Not armstrong number");
+			return false;
+		}
+		
+	
 	}
 
 	/**
@@ -388,9 +457,32 @@ public class EvaluationService {
 	 * @param l
 	 * @return
 	 */
-	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	public List<Long> calculatePrimeFactorsOf(long n) {
+		
+		List<Long> factors = new ArrayList<Long>();
+		long md=2;
+		
+		while(n%md==0) {
+			factors.add(md);
+			n/=md;
+			
+		}
+		md=3;
+		while(md<=java.lang.Math.sqrt(n)+1) {
+			while(n%md==0) {
+				factors.add(md);
+				n/=md;
+			}
+			md+=2;
+		}
+		if(n>1) {
+			factors.add(n);
+		}
+		System.out.println(factors);
+		return factors;
+		
+		
+	
 	}
 
 	/**
@@ -446,9 +538,34 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
-	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+	public int calculateNthPrime(int number) {
+		
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+		
+		arr.add(2);
+		arr.add(3);
+		
+		int counter = 4;
+		
+		while(arr.size()<number) {
+			if(counter%2!=0&&counter%3!=0) {
+				int temp=4;
+				while(temp*temp<=counter) {
+					if(counter%temp==0) {
+						break;
+					}
+					temp++;
+				}
+				if(temp*temp>counter) {
+					arr.add(counter);
+				}
+			}
+			counter++;
+		}
+		System.out.println("find : " +arr.get(number-1));
+		int found = arr.get(number-1);
+		
+		return found;
 	}
 
 	/**
@@ -523,8 +640,34 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isValidIsbn(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		String isbn= string;
+		if(isbn==null) {
+			return false;
+		}
+		
+		isbn = isbn.replaceAll("-","");
+		
+		if(isbn.length()!=10) {
+			return false;
+		}
+		try {
+			int total =0;
+			for(int i=0;i<9;i++) {
+				int digit = Integer.parseInt(isbn.substring(i, i+1));
+				total+=((10-i)*digit);
+			}//end for
+			String check = Integer.toString(((11-(total%11))%11));
+			if("10".equals(check)) {
+				check="X";
+			}
+			System.out.println("true");
+			return check.equals(isbn.substring(9));
+			
+		}//end try
+		catch(NumberFormatException nfe) {
+			System.out.println("false");
+			return false;
+		}
 	}
 
 	/**
@@ -540,9 +683,46 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
+	
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		
+		boolean[] mark = new boolean[26];
+		
+		int index=0;
+		
+		for(int i=0; i<string.length();i++) {
+			if('a'<=string.charAt(i)&& string.charAt(i)<='z') {
+				index = string.charAt(i)-'a';
+				
+				mark[index] = true;
+			}
+		}
+		for(int i=0;i<=25;i++) {
+			if(mark[i]==false) {
+				System.out.println("no pangram");
+				return false;
+			}
+		}
+		System.out.println("it is pangram");
+		return true;
+		
+		
+	
+//        String alPha = "abcdefghijklmnopqrstuvwxyz";
+//        int len =string.length();
+//        for(int i=0; i<len;i++) {
+//        	if(string.contains(""+alPha.charAt(i))){
+//        		System.out.println("Pangram!!");
+//        		return true;
+//        	}
+//        	else
+//        	{
+//        		System.out.println("No Pangram!!");
+//        		return false;
+//        	}
+//        }
+
+    
 	}
 
 	/**
@@ -554,7 +734,15 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
-		// TODO Write an implementation for this method declaration
+		
+		int gigaSec = 1000000000;
+		int minute = gigaSec/60;
+		int hour = minute/60;
+		int day = hour/24;
+		
+		//31year 709 days
+		System.out.println(day);
+		
 		return null;
 	}
 
