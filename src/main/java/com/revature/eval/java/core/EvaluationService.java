@@ -1,11 +1,18 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EvaluationService {
 
+public class EvaluationService {
+	
+		
+	
+
+	
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
@@ -19,7 +26,10 @@ public class EvaluationService {
 			reversed[j] = string.charAt(i);
 		}
 		return new String(reversed);
+		
 	}
+	
+	
 
 	/**
 	 * 2. Convert a phrase to its acronym. Techies love their TLA (Three Letter
@@ -31,7 +41,8 @@ public class EvaluationService {
 	 */
 	public String acronym(String phrase) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		  String result = phrase.replaceAll("\\B.|\\P{L}", "").toUpperCase();		
+		  return result;
 	}
 
 	/**
@@ -84,17 +95,27 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
+			
+			if(sideOne==sideTwo&&sideTwo==sideThree)
+			{
+				return true;
+			}
 			return false;
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
+			if(sideOne==sideTwo||sideOne==sideThree||sideTwo==sideThree)
+			{
+				return true;
+			}
 			return false;
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
+			if(sideOne!=sideTwo&&sideOne!=sideThree&&sideTwo==sideThree)
+			{
+				return true;
+			}
 			return false;
 		}
 
@@ -116,8 +137,39 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		int count=0;
+		   String[] words = string.split("");
+		   for(int i=0;i<words.length;i++) {
+		 
+			   if(words[i].equals("z")||words[i].equals("q")){
+				   count+=10;   
+			    }
+			   else if(words[i].equals("x")||words[i].equals("j"))
+			   {
+				   count+=8;
+			   }
+			   else if(words[i].equals("k")) {
+				   count+=5;
+			   }
+			   else if(words[i].equals("y")||words[i].equals("w")||words[i].equals("v")||words[i].equals("h")||words[i].equals("f")) {
+				   count+=4;
+			   }
+		  
+			   else if(words[i].equals("b")||words[i].equals("c")||words[i].equals("m")||words[i].equals("p")) {
+				   count+=3;
+			   }
+			   else if(words[i].equals("d")||words[i].equals("g")) {
+				   count+=2;
+			   }
+			   else {
+				   count+=1;
+			   }
+		   
+			   
+		   }
+		   
+		   
+		return count;
 	}
 
 	/**
@@ -152,7 +204,24 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
+		
+		String afterChange;
+		String[] temp;
+		afterChange = string.replaceAll("[()]", "").replaceAll(" ", "").replaceAll("-", "").replaceAll("\\.", "");
+		afterChange = afterChange.replaceAll("\\+","");		
+		temp=afterChange.split("");		
+		
+			if(temp[0].equals("1"))
+			{
+				temp[0]="";
+				
+			}
+			for(int i=0;i<temp.length;i++)
+			{
+				System.out.print(temp[i]);
+			}
+			System.out.println("");
+
 		return null;
 	}
 
@@ -166,7 +235,46 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
+		Map<String,Integer> frequency =new HashMap<>();
+		//String testWord = "olly olly in come free";
+		String[] words = string.split(" ");
+		
+		for(String word : words) {
+			if(frequency.containsKey((word))){
+				frequency.put(word, frequency.get(word)+1);
+				
+			}
+			else {
+				frequency.put(word, 1);
+			}
+		
+			
+		}
+		System.out.println(frequency);
+//		String testWord = "olly olly in come free";
+//		int wordCount=1;
+//		
+//		String[] words=testWord.split(" ");
+//		
+//		for(int i=0;i<words.length;i++)
+//		{
+//			for(int j=i+1;j<words.length;j++) {
+//				if(words[i].equals(words[j]))
+//				{
+//					wordCount+=1;
+//					words[j]="0";
+//				}
+//				if(words[i]!="0") {
+//					System.out.println(words[i]+": "+wordCount);
+//					wordCount=1;
+//				}
+//			}
+//			
+//		}
+		
+		
+		
+				
 		return null;
 	}
 
@@ -463,8 +571,22 @@ public class EvaluationService {
 	 * @param set
 	 * @return
 	 */
-	public int getSumOfMultiples(int i, int[] set) {
+	public int getSumOfMultiples(int size, int[] set) {
 		// TODO Write an implementation for this method declaration
+		ArrayList<Integer> x = new ArrayList<Integer>();
+		int total =0;
+		for(int j=0;j<size;j++)
+		{
+			for(int i=0; i<set.length;i++)
+			{
+					 if (size%set[i] == 0)
+					 { 
+						 total += i;
+					 }
+			}
+		}
+		
+		System.out.println(total);
 		return 0;
 	}
 
