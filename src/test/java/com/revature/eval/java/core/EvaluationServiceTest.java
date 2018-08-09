@@ -528,7 +528,7 @@ public class EvaluationServiceTest {
 
 	@Test
 	public void invalidIsbnCheckDigit() {
-		assertFalse(evaluationService.isValidIsbn("3-598-21508-9"));p
+		assertFalse(evaluationService.isValidIsbn("3-598-21508-9"));
 	}
 
 	@Test

@@ -17,13 +17,18 @@ public class EvaluationLauncher {
 		EvaluationService test = new EvaluationService();
 		
 		//1.
+		System.out.println("-------1-------");
 		System.out.println(test.reverse("example"));
 		
 		//2.
+		System.out.println("---------2----------");
+		
 		String str = " James Rho ";
 		System.out.println(test.acronym(str));
 		
+		
 		//3.
+		System.out.println("-------------3--------");
 		Triangle testTriangle = new Triangle(2,2,1);
 		if(testTriangle.isEquilateral())
 		{
@@ -56,13 +61,14 @@ public class EvaluationLauncher {
 		
 		//8. pig latin
 		
-		
+		System.out.println("-------------8----------");
 		test.toPigLatin("apple");
 		test.toPigLatin("therapy");
 		test.toPigLatin("school");
 		test.toPigLatin("yellow");
 		test.toPigLatin("quick fast run");
 		
+		System.out.println("----------9------------");
 		test.isArmstrongNumber(9);
 		test.isArmstrongNumber(10);
 		test.isArmstrongNumber(153);
@@ -70,108 +76,131 @@ public class EvaluationLauncher {
 		test.isArmstrongNumber(9474);
 		test.isArmstrongNumber(8208);
 		
+		System.out.println("-----------------10-------------");
 		test.calculatePrimeFactorsOf(12l);
 		
+		System.out.println("----------------12--------------");
 		test.calculateNthPrime(10);
 		
+		System.out.println("--------------15------------");
 		test.isValidIsbn("3-598-21508-9");
 		
-		
+		System.out.println("--------------16------------");
 		test.isPangram("");
 		test.isPangram("abcdefghijklmnopqrstuvwxyz");
 	    test.isPangram("the quick brown fox jumps over the lazy dog");
 	    test.isPangram("a quick movement of the enemy will jeopardize five gunboats");
 	    
 	    
+	    System.out.println("-------------------17--------------");
 	    test.getGigasecondDate(LocalDate.of(2011, Month.APRIL, 25));
-	    
+	    test.getGigasecondDate(LocalDate.of(1977, Month.JUNE, 13));
+	    test.getGigasecondDate(LocalDate.of(1959, Month.JULY, 19));
 
 	    
-	    
-	    
-//	    public void modernTime() {
-//			assertEquals(LocalDateTime.of(2043, Month.JANUARY, 1, 1, 46, 40),
-//					evaluationService.getGigasecondDate(LocalDate.of(2011, Month.APRIL, 25)));
-//		}
-//
-//		@Test
-//		public void afterEpochTime() {
-//			assertEquals(LocalDateTime.of(2009, Month.FEBRUARY, 19, 1, 46, 40),
-//					evaluationService.getGigasecondDate(LocalDate.of(1977, Month.JUNE, 13)));
-//		}
-//
-//		@Test
-//		public void beforeEpochTime() {
-//			assertEquals(LocalDateTime.of(1991, Month.MARCH, 27, 1, 46, 40),
-//					evaluationService.getGigasecondDate(LocalDate.of(1959, Month.JULY, 19)));
-//		}
-//
-//		@Test
-//		public void withFullTimeSpecified() {
-//			assertEquals(LocalDateTime.of(2046, Month.OCTOBER, 2, 23, 46, 40),
-//					evaluationService.getGigasecondDate(LocalDateTime.of(2015, Month.JANUARY, 24, 22, 0, 0)));
-//		}
-//
-//		@Test
-//		public void withFullTimeSpecifiedAndDayRollover() {
-//			assertEquals(LocalDateTime.of(2046, Month.OCTOBER, 3, 1, 46, 39),
-//					evaluationService.getGigasecondDate(LocalDateTime.of(2015, Month.JANUARY, 24, 23, 59, 59)));
-//		}
 
-	    
-	    
-//		@Test
-//		public void emptySentenceIsNotPangram() {
-//			assertFalse(evaluationService.isPangram(""));
-//		}
-//
-//		@Test
-//		public void recognizesPerfectLowerCasePangram() {
-//			assertTrue(evaluationService.isPangram(""));
-//		}
-//
-//		@Test
-//		public void pangramWithOnlyLowerCaseLettersIsRecognizedAsPangram() {
-//			assertTrue(evaluationService.isPangram("the quick brown fox jumps over the lazy dog"));
-//		}
-//
-//		@Test
-//		public void phraseMissingCharacterXIsNotPangram() {
-//			assertFalse(evaluationService.isPangram("a quick movement of the enemy will jeopardize five gunboats"));
-//		}
-//
-//		@Test
-//		public void phraseMissingAnotherCharacterIsNotPangram() {
-//			assertFalse(evaluationService.isPangram("five boxing wizards jump quickly at it"));
-//		}
-		
-//		@Test
-//		public void testWordBeginningWithA() {
-//			assertEquals("appleay", evaluationService.toPigLatin("apple"));
-//		}
-//
-//		@Test
-//		public void testThTreatedLikeAConsonantAtTheBeginningOfAWord() {
-//			assertEquals("erapythay", evaluationService.toPigLatin("therapy"));
-//		}
-//
-//		@Test
-//		public void testSchTreatedLikeAConsonantAtTheBeginningOfAWord() {
-//			assertEquals("oolschay", evaluationService.toPigLatin("school"));
-//		}
-//
-//		@Test
-//		public void testYTreatedLikeAConsonantAtTheBeginningOfAWord() {
-//			assertEquals("ellowyay", evaluationService.toPigLatin("yellow"));
-//		}
-//
-//		@Test
-//		public void testAWholePhrase() {
-//			assertEquals("ickquay astfay unray", evaluationService.toPigLatin("quick fast run"));
-//		}
-		
 		//18.
-		int[] set = {3,5};
-		test.getSumOfMultiples(20, set);
+		/*******************************************************************
+		 * Question 18
+		 ******************************************************************/
+	    System.out.println("-------------18---------------");
+	    int[] set3= {3,5};
+	    test.getSumOfMultiples(20, set3);
+	    
+	    int[] set = {4,6};
+	    test.getSumOfMultiples(15, set);
+	    
+	    int[] set1 = {5,6,8};
+	    test.getSumOfMultiples(150, set1);
+	    int[] set4= {5,25};
+	    test.getSumOfMultiples(51, set4);
+	    
+	    
+	    
+	    System.out.println("--------------------19----------------");
+	    //test.isLuhnValid("");
+	    //test.isLuhnValid("4539 1488 0343 6467");//true
+//	    test.isLuhnValid("046 454 286");
+//	    test.isLuhnValid("046 454 287");//false
+//	    test.isLuhnValid("8273 1232 7352 0569");//false
+	    test.isLuhnValid("046a 454 286");//false
+	    test.isLuhnValid("055-444-285");//false;
+	    
+	    System.out.println("-----------------20------------");
+	    test.solveWordProblem("what is 10 plus 20");
+	    test.solveWordProblem("what is -10 plus -20");
+	    test.solveWordProblem("what is -10 multiplied by -3");
+//
+//		public void testThatAValidCanadianSocialInsuranceNumberIsIdentifiedAsValidV1() {
+//			assertTrue(evaluationService.isLuhnValid("046 454 286"));
+//		}
+//
+//		@Test
+//		public void testThatAnInvalidCanadianSocialInsuranceNumberIsIdentifiedAsInvalid() {
+//			assertFalse(evaluationService.isLuhnValid("046 454 287"));
+//		}
+//
+//		@Test
+//		public void testThatAnInvalidCreditCardIsIdentifiedAsInvalid() {
+//			assertFalse(evaluationService.isLuhnValid("8273 1232 7352 0569"));
+//		}
+//
+//		@Test
+//		public void testThatAddingANonDigitCharacterToAValidStringInvalidatesTheString() {
+//			assertFalse(evaluationService.isLuhnValid("046a 454 286"));
+//		}
+//
+//		@Test
+//		public void testThatStringContainingPunctuationIsInvalid() {
+//			assertFalse(evaluationService.isLuhnValid("055-444-285"));
+//		}
+
+	    
+	  
+//		@Test
+//		public void testSumOfMultiplesOf4and6UpToFifteen() {
+//
+//			int[] set = { 4, 6 };
+//			int output = evaluationService.getSumOfMultiples(15, set);
+//			assertEquals(30, output);
+//
+//		}
+//
+//		@Test
+//		public void testSumOfMultiplesOf5and6and8UpToOneHundredFifty() {
+//
+//			int[] set = { 5, 6, 8 };
+//			int output = evaluationService.getSumOfMultiples(150, set);
+//			assertEquals(4419, output);
+//
+//		}
+//
+//		@Test
+//		public void testSumOfMultiplesOf5and25UpToFiftyOne() {
+//
+//			int[] set = { 5, 25 };
+//			int output = evaluationService.getSumOfMultiples(51, set);
+//			assertEquals(275, output);
+//
+//		}
+//
+//		@Test
+//		public void testSumOfMultiplesOf43and47UpToTenThousand() {
+//
+//			int[] set = { 43, 47 };
+//			int output = evaluationService.getSumOfMultiples(10000, set);
+//			assertEquals(2203160, output);
+//
+//		}
+//
+//		@Test
+//		public void testSumOfMultiplesOfOneUpToOneHundred() {
+//
+//			int[] set = { 1 };
+//			int output = evaluationService.getSumOfMultiples(100, set);
+//			assertEquals(4950, output);
+//
+//		}
+	
 	}
 }

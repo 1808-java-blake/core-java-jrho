@@ -1,11 +1,18 @@
 package com.revature.eval.java.core;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 public class EvaluationService {
@@ -42,7 +49,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
+	
 		  String result = phrase.replaceAll("\\B.|\\P{L}", "").toUpperCase();		
 		  return result;
 	}
@@ -223,6 +230,7 @@ public class EvaluationService {
 				System.out.print(temp[i]);
 			}
 			System.out.println("");
+	
 
 		return null;
 	}
@@ -397,7 +405,7 @@ public class EvaluationService {
             }
             if (cut == 0)
             {
-                cut = 1;
+                cut = 0;
             }
             
             System.out.println((string.substring(cut) + beforVowel + "ay"));
@@ -540,6 +548,10 @@ public class EvaluationService {
 	 */
 	public int calculateNthPrime(int number) {
 		
+		if(number<=0) {
+			throw new IllegalArgumentException();
+		}
+		
 		ArrayList<Integer> arr = new ArrayList<Integer>();
 		
 		arr.add(2);
@@ -566,6 +578,9 @@ public class EvaluationService {
 		int found = arr.get(number-1);
 		
 		return found;
+		
+		
+		
 	}
 
 	/**
@@ -601,7 +616,7 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
+			
 			return null;
 		}
 
@@ -734,16 +749,23 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
+		//In case,time not included
+        if(given instanceof LocalDate) {
+            LocalDateTime time = LocalDateTime.of((LocalDate) given, LocalTime.MIN);
+            System.out.println(time.plus(Duration.ofSeconds(1000000000l)));
+            return time.plus(Duration.ofSeconds(1000000000l));
+        }
+        //if time is included
+        LocalDateTime time = LocalDateTime.from(given);
+        System.out.println(time.plus(Duration.ofSeconds(1000000000l)));
+        return time.plus(Duration.ofSeconds(1000000000l));
+    
 		
-		int gigaSec = 1000000000;
-		int minute = gigaSec/60;
-		int hour = minute/60;
-		int day = hour/24;
 		
-		//31year 709 days
-		System.out.println(day);
 		
-		return null;
+		
+		
+		//31year 709 day
 	}
 
 	/**
@@ -760,22 +782,41 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int size, int[] set) {
-		// TODO Write an implementation for this method declaration
-		ArrayList<Integer> x = new ArrayList<Integer>();
-		int total =0;
-		for(int j=0;j<size;j++)
-		{
-			for(int i=0; i<set.length;i++)
-			{
-					 if (size%set[i] == 0)
-					 { 
-						 total += i;
-					 }
-			}
-		}
 		
-		System.out.println(total);
-		return 0;
+		int sum,result=0;
+		List<Integer> temp = new ArrayList<>();
+		Set<Integer> sumOfAll = new HashSet<>();
+		
+		
+		
+		
+		for(int i=0; i<set.length;i++) 
+		{
+			for(int j=1; j<size;j++) 
+			{
+				while(set[i]*j<size) {
+					sum= set[i]*j;
+					temp.add(sum);
+					//System.out.println("sum:"+sum);
+					j++;
+
+				}
+			}
+		}//end for
+		
+		sumOfAll.addAll(temp);
+		temp.clear();
+		temp.addAll(sumOfAll);
+		//System.out.println("sum of all : "+temp);
+		for(int i=0; i<temp.size();i++) {
+			result+=temp.get(i);
+		}
+		System.out.println("result:"+result);
+		//System.out.println("result :"+result);
+		return result;
+		
+		
+		
 	}
 
 	/**
@@ -815,9 +856,88 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isLuhnValid(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		
+		
+		
+		//String removeSpace = string.replaceAll("[a-zA-Z]", "").replaceAll("-", "");
+		
+		String[] number= string.split(" ");
+		String creditNum="";
+		for(int i=0;i<number.length;i++) {
+			creditNum+=number[i];
+			
+			
+		}
+		for(int i=0; i<creditNum.length();i++) {
+			if(Character.isDigit(creditNum.charAt(i)))
+			{
+				return false;
+			}
+		}
+		
+		if(string.length()<1) {
+			System.out.println("card number is empty");
+			return false;
+		}
+		
+		
+		if(creditNum.contains("abcdefghijklmnopqrstuvwxyz"))
+		{
+			return false;
+		}
+		
+		System.out.println("before calc");
+		System.out.println(creditNum);
+		int[] ints = new int[creditNum.length()];
+		System.out.println(ints.length);
+		//System.out.println(creditNum);
+
+		for(int i=0;i<creditNum.length();i++) { 
+			ints[i]=Integer.parseInt(creditNum.substring(i, i+1));
+			//System.out.print(ints[i]);
+		}
+		int sum=0;
+		
+		for(int i=ints.length-2;i>=0;i=i-2) {
+			int j=ints[i];
+			j=j*2;
+			if(j>9) {
+				j=j%10+1;
+				//j=j-9;
+			}
+			ints[i]=j;
+		}
+		
+		System.out.println("after calculated");
+		for(int i=0;i<ints.length;i++) {
+			System.out.print(ints[i]);
+		}
+		for(int i=0;i<ints.length;i++) {
+			sum+=ints[i];
+		}
+		System.out.println("this is total sum num:"+sum);
+		if(sum%10==0) {
+			System.out.println("This is valid credit card number");
+			return true;
+		}
+		else
+		{
+			System.out.println("This is invaild credit card number");
+			return false;
+		}
+		
+
 	}
+//		
+//		//test.isLuhnValid("046 454 286");
+//		int index = 0;
+//		int getNum=0;
+//		String removeSpace = string.replaceAll("[a-zA-Z]", "").replaceAll("-", "");
+//		
+//		String[] number= removeSpace.split(" ");
+//		System.out.println(number[1]);
+//	
+	
 
 	/**
 	 * 20. Parse and evaluate simple math word problems returning the answer as an
@@ -847,7 +967,45 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		// TODO Write an implementation for this method declaration
+//		string = string.replaceAll("What is", "");
+//		String num = string.replaceAll("[*0-9]", "");
+//		
+//		System.out.println(string);
+//		System.out.println(string);
+//		String number="";
+//		String[] temp = string.split(" ");
+//		System.out.println(Arrays.toString(temp));
+		String number = string;
+		
+		number=number.replaceAll("[^-0-9]+", " ");
+		System.out.println(Arrays.asList(number.trim().split(" ")));
+		
+		List<String> arrayNum = Arrays.asList(number.trim().split(" "));
+		
+		System.out.println(arrayNum.get(0));
+		
+		int a = Integer.parseInt((arrayNum.get(0)));
+		int b = Integer.parseInt((arrayNum.get(1)));
+		
+		if(string.contains("plus")) {
+			System.out.println(a+b);
+			return a+b;
+		}
+		else if(string.contains("minus")) {
+			System.out.println(a-b);
+			return a-b;
+		}
+		else if(string.contains("divided")) {
+			System.out.println(a/b);
+			return (a/b);
+		}
+		else if(string.contains("multiplied")) {
+			System.out.println(a*b);
+			return (a*b);
+		}
+		
+		
+		
 		return 0;
 	}
 
