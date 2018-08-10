@@ -64,7 +64,7 @@ public class EvaluationLauncher {
 //		
 //		System.out.println("----------9------------");
 		
-		test.isArmstrongNumber(9);
+		//test.isArmstrongNumber(9);
 //		test.isArmstrongNumber(8208);
 //		
 //		System.out.println("-----------------10-------------");
@@ -111,7 +111,8 @@ public class EvaluationLauncher {
 //	    
 //	    
 //	    
-//	    System.out.println("--------------------19----------------");
+	    System.out.println("--------------------19----------------");
+	    test.isLuhnValid("046 454 286");
 //	    //test.isLuhnValid("");
 //	    //test.isLuhnValid("4539 1488 0343 6467");//true
 ////	    test.isLuhnValid("046 454 286");
@@ -125,122 +126,20 @@ public class EvaluationLauncher {
 //	    test.solveWordProblem("what is -10 plus -20");
 //	    test.solveWordProblem("what is -10 multiplied by -3");
 		
-		EvaluationService.AtbashCipher.encode("bvh");
+		//EvaluationService.AtbashCipher.encode("bvh");
 		
-		
-		System.out.println("--------------------11-----------");
-		EvaluationService.RotationalCipher rota = new EvaluationService.RotationalCipher(13);
-		rota.rotate("n");
-		rota.rotate("OMG");
-		rota.rotate("Testing 1 2 3 testing");
-		rota.rotate("Gur dhvpx oebja sbk whzcf bire gur ynml qbt");
-		
-		System.out.println("----------------------7-------");
+//		
+//		System.out.println("--------------------11-----------");
+//		EvaluationService.RotationalCipher rota = new EvaluationService.RotationalCipher(13);
+//		rota.rotate("n");
+//		rota.rotate("OMG");
+//		rota.rotate("Testing 1 2 3 testing");
+//		rota.rotate("Gur dhvpx oebja sbk whzcf bire gur ynml qbt");
+//		
+//		System.out.println("----------------------7-------");
 		//List<Integer> sortedList = {1, 3, 4, 6, 8, 9, 11};
 		//EvaluationService.BinarySearch<String> search = new EvaluationService.BinarySearch<String>(sortedList);
 		//search.indexOf("6");
 	
-//		public void rotateSingleCharacterWithWrapAround() {
-//			EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(13);
-//			assertEquals("a", rotationalCipher.rotate("n"));
-//		}
-//
-//		@Test
-//		public void rotateCapitalLetters() {
-//			EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(5);
-//			assertEquals("TRL", rotationalCipher.rotate("OMG"));
-//		}
-//
-//		@Test
-//		public void rotateNumbers() {
-//			EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(4);
-//			assertEquals("Xiwxmrk 1 2 3 xiwxmrk", rotationalCipher.rotate("Testing 1 2 3 testing"));
-//		}
-//
-//		@Test
-//		public void rotatePunctuation() {
-//			EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(21);
-//			assertEquals("Gzo'n zvo, Bmviyhv!", rotationalCipher.rotate("Let's eat, Grandma!"));
-//		}
-//
-//		@Test
-//		public void rotateAllLetters() {
-//			EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(13);
-//			assertEquals("The quick brown fox jumps over the lazy dog.",
-//					rotationalCipher.rotate("Gur dhvpx oebja sbk whzcf bire gur ynml qbt."));
-//		}
-
-////
-////		public void testThatAValidCanadianSocialInsuranceNumberIsIdentifiedAsValidV1() {
-////			assertTrue(evaluationService.isLuhnValid("046 454 286"));
-////		}
-////
-////		@Test
-////		public void testThatAnInvalidCanadianSocialInsuranceNumberIsIdentifiedAsInvalid() {
-////			assertFalse(evaluationService.isLuhnValid("046 454 287"));
-////		}
-////
-////		@Test
-////		public void testThatAnInvalidCreditCardIsIdentifiedAsInvalid() {
-////			assertFalse(evaluationService.isLuhnValid("8273 1232 7352 0569"));
-////		}
-////
-////		@Test
-////		public void testThatAddingANonDigitCharacterToAValidStringInvalidatesTheString() {
-////			assertFalse(evaluationService.isLuhnValid("046a 454 286"));
-////		}
-////
-////		@Test
-////		public void testThatStringContainingPunctuationIsInvalid() {
-////			assertFalse(evaluationService.isLuhnValid("055-444-285"));
-////		}
-//
-//	    
-//	  
-////		@Test
-////		public void testSumOfMultiplesOf4and6UpToFifteen() {
-////
-////			int[] set = { 4, 6 };
-////			int output = evaluationService.getSumOfMultiples(15, set);
-////			assertEquals(30, output);
-////
-////		}
-////
-////		@Test
-////		public void testSumOfMultiplesOf5and6and8UpToOneHundredFifty() {
-////
-////			int[] set = { 5, 6, 8 };
-////			int output = evaluationService.getSumOfMultiples(150, set);
-////			assertEquals(4419, output);
-////
-////		}
-////
-////		@Test
-////		public void testSumOfMultiplesOf5and25UpToFiftyOne() {
-////
-////			int[] set = { 5, 25 };
-////			int output = evaluationService.getSumOfMultiples(51, set);
-////			assertEquals(275, output);
-////
-////		}
-////
-////		@Test
-////		public void testSumOfMultiplesOf43and47UpToTenThousand() {
-////
-////			int[] set = { 43, 47 };
-////			int output = evaluationService.getSumOfMultiples(10000, set);
-////			assertEquals(2203160, output);
-////
-////		}
-////
-////		@Test
-////		public void testSumOfMultiplesOfOneUpToOneHundred() {
-////
-////			int[] set = { 1 };
-////			int output = evaluationService.getSumOfMultiples(100, set);
-////			assertEquals(4950, output);
-////
-////		}
-//	
-	}
+	}//end main
 }

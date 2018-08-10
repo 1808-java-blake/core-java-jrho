@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
+//James Rho
+//8/10/2018 Friday
 public class EvaluationService {
 
 
@@ -64,7 +65,6 @@ public class EvaluationService {
 		private double sideOne;
 		private double sideTwo;
 		private double sideThree;
-
 		public Triangle() {
 			super();
 		}
@@ -75,6 +75,8 @@ public class EvaluationService {
 			this.sideTwo = sideTwo;
 			this.sideThree = sideThree;
 		}
+		
+	
 
 		public double getSideOne() {
 			return sideOne;
@@ -99,8 +101,12 @@ public class EvaluationService {
 		public void setSideThree(double sideThree) {
 			this.sideThree = sideThree;
 		}
+		
+		
+
 
 		public boolean isEquilateral() {
+			
 			
 			if(sideOne==sideTwo&&sideTwo==sideThree)
 			{
@@ -108,8 +114,10 @@ public class EvaluationService {
 			}
 			return false;
 		}
-
+		
+		
 		public boolean isIsosceles() {
+			
 			if(sideOne==sideTwo||sideOne==sideThree||sideTwo==sideThree)
 			{
 				return true;
@@ -118,7 +126,9 @@ public class EvaluationService {
 		}
 
 		public boolean isScalene() {
-			if(sideOne!=sideTwo&&sideOne!=sideThree&&sideTwo==sideThree)
+			
+			
+			if(sideOne!=sideTwo&&sideOne!=sideThree&&sideTwo!=sideThree)
 			{
 				return true;
 			}
@@ -944,7 +954,7 @@ public class EvaluationService {
 	 */
 	public boolean isLuhnValid(String string) {
 		
-		
+		//046 454 286
 		
 		//String removeSpace = string.replaceAll("[a-zA-Z]", "").replaceAll("-", "");
 		
@@ -952,11 +962,11 @@ public class EvaluationService {
 		String creditNum="";
 		for(int i=0;i<number.length;i++) {
 			creditNum+=number[i];
-			
-			
 		}
+		System.out.println(creditNum);
+		
 		for(int i=0; i<creditNum.length();i++) {
-			if(Character.isDigit(creditNum.charAt(i)))
+			if(Character.isDigit(creditNum.charAt(i))!=true)
 			{
 				return false;
 			}
@@ -968,7 +978,7 @@ public class EvaluationService {
 		}
 		
 		
-		if(creditNum.contains("abcdefghijklmnopqrstuvwxyz"))
+		else if(creditNum.contains("abcdefghijklmnopqrstuvwxyz"))
 		{
 			return false;
 		}
