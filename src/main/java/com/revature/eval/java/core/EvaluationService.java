@@ -16,11 +16,8 @@ import java.util.Set;
 
 
 public class EvaluationService {
-	
-		
-	
 
-	
+
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
@@ -216,23 +213,39 @@ public class EvaluationService {
 		
 		String afterChange;
 		String[] temp;
+		String result ="";
 		afterChange = string.replaceAll("[()]", "").replaceAll(" ", "").replaceAll("-", "").replaceAll("\\.", "");
 		afterChange = afterChange.replaceAll("\\+","");		
-		temp=afterChange.split("");		
+		temp=afterChange.split("");	
+	
+		
 		
 			if(temp[0].equals("1"))
 			{
 				temp[0]="";
 				
 			}
+			
 			for(int i=0;i<temp.length;i++)
 			{
+				result+=temp[i];
 				System.out.print(temp[i]);
 			}
-			System.out.println("");
+			
+			
+			if(result.length()>11) {
+				throw new IllegalArgumentException();
+			}
+			else if(result.matches("^[0-9]+$")==false)
+			{
+				throw new IllegalArgumentException();
+			}
+			
+			
+			
 	
 
-		return null;
+		return result;
 	}
 
 	/**
@@ -261,31 +274,8 @@ public class EvaluationService {
 			
 		}
 		System.out.println(frequency);
-//		String testWord = "olly olly in come free";
-//		int wordCount=1;
-//		
-//		String[] words=testWord.split(" ");
-//		
-//		for(int i=0;i<words.length;i++)
-//		{
-//			for(int j=i+1;j<words.length;j++) {
-//				if(words[i].equals(words[j]))
-//				{
-//					wordCount+=1;
-//					words[j]="0";
-//				}
-//				if(words[i]!="0") {
-//					System.out.println(words[i]+": "+wordCount);
-//					wordCount=1;
-//				}
-//			}
-//			
-//		}
-		
-		
-		
-				
-		return null;
+	
+		return frequency;
 	}
 
 	/**
@@ -333,11 +323,6 @@ public class EvaluationService {
 			a = words;
 			c = comparator;
 		}
-		
-		
-		
-		
-		
 		
 
 		public int indexOf(T t) {
@@ -433,18 +418,31 @@ public class EvaluationService {
 		int remainder=0;
 		int result=0;
 		int number =0;
+		int numOfDigit = 0;
+		
+		numOfDigit = (int)(Math.log10(input)+1);
+		System.out.println("num of digit" +numOfDigit);
+		
+		if(numOfDigit == 1) {
+			System.out.println("single digit");
+			return true;
+		}
 		
 		number = input;
 		
 		while(number!=0) {
 			remainder = number%10;
-			result+= (remainder*remainder*remainder);
+			System.out.println("remainder = "+remainder);
+			result+= Math.pow(remainder, numOfDigit);
+			System.out.println("result: "+result);
 			number /=10;
 		}
-		
+		System.out.println("result:"+result);
+		System.out.println("input:"+input);
 		if(result==input) {
 			System.out.println("armstrong number");
 			return true;
+			
 		}
 		else
 		{
@@ -505,6 +503,7 @@ public class EvaluationService {
 	 * The general notation for rotational ciphers is ROT + <key>. The most commonly
 	 * used rotational cipher is ROT13.
 	 * 
+	 * 
 	 * A ROT13 on the Latin alphabet would be as follows:
 	 * 
 	 * Plain: abcdefghijklmnopqrstuvwxyz Cipher: nopqrstuvwxyzabcdefghijklm It is
@@ -528,11 +527,33 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
-		}
+//			//RotationalCipher rc = RotationalCipher.this.key();
+			 int shift = RotationalCipher.this.key;
+
+			StringBuilder str = new StringBuilder();
+			char c;
+			for(int i=0;i<string.length();i++) {
+				c=string.charAt(i);
+				if(Character.isLetter(c)) {
+					c=(char)(string.charAt(i)+shift);
+					
+				}
+				if((Character.isLowerCase(string.charAt(i))&&c>'z'||(Character.isUpperCase(string.charAt(i))&&c>'Z')))
+				{
+					c=(char)(string.charAt(i)-(26-shift));
+				}
+				str.append(c);
+			}//end for
+			
+			String result = "";
+			for(int i=0; i<str.length();i++) {
+				result+=str.charAt(i);
+			}
+			System.out.println(result);
+			return result;
 
 	}
+}
 
 	/**
 	 * 12. Given a number n, determine what the nth prime is.
@@ -617,7 +638,41 @@ public class EvaluationService {
 		 */
 		public static String encode(String string) {
 			
-			return null;
+			String alpa ="abcdefghijklmnopqrstuvwxyz";
+			String reverse="";
+			
+			for(int i=alpa.length()-1;i>-1;i--) {
+				reverse +=alpa.charAt(i);
+			}
+			System.out.println(reverse);
+			String input =string.toLowerCase();
+			
+			String enc = "";
+			for(int i=0; i<input.length();i++  ) {
+				if(input.charAt(i)==(char)32){
+					enc+=" ";
+				}
+				else {
+				
+					for(int j=0; j<alpa.length();j++) {
+						if(input.charAt(i)==alpa.charAt(j))
+						{
+							enc+=reverse.charAt(j);
+							break;
+						}
+						
+					}//end for
+				}//end else
+			}//end for
+			
+			
+			//ArrayList<String> arr = new ArrayList<>();
+			
+			//arr = arr.addAll(enc);
+			
+//			System.out.println(result.toString());
+			//System.out.println("encryption:"+ temp);
+			return enc;
 		}
 
 		/**
@@ -627,8 +682,40 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			String alpa ="abcdefghijklmnopqrstuvwxyz";
+			String reverse="";
+			
+			for(int i=alpa.length()-1;i>-1;i--) {
+				reverse +=alpa.charAt(i);
+			}
+			System.out.println(reverse);
+			String input =string.toLowerCase();
+			
+			String dec = "";
+			for(int i=0; i<input.length();i++  ) {
+				if(input.charAt(i)==(char)32){
+					dec+=" ";
+				}
+				else {
+				
+					for(int j=0; j<reverse.length();j++) {
+						if(input.charAt(i)==reverse.charAt(j))
+						{
+							dec+=alpa.charAt(j);
+							break;
+						}
+						
+					}//end for
+				}//end else
+			}//end for
+			
+			String[] noSpace = dec.split(" ");
+			String result="";
+			for(int i=0; i<noSpace.length;i++) {
+				result+=noSpace[i];
+			}
+			System.out.println("decryption:" + result);
+			return result;
 		}
 	}
 
